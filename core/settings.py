@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'client',
     'book',
     'loan',
+    'setup',
 ]
 
 MIDDLEWARE = [
