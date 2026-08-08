@@ -1,12 +1,18 @@
+import environ
 from pathlib import Path
+
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = 'django-insecure-fb5_3f4ft)vwiy4eprc&3s5eu396tn$*6k^bp#k&rxohks3#7q'
+environ.Env.read_env(BASE_DIR / '.env')
 
-DEBUG = True
+env = environ.Env()
 
-ALLOWED_HOSTS = []
+SECRET_KEY = env('SECRET_KEY')
+
+DEBUG = env.bool('DEBUG', default=False)
+
+ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default=[])
 
 INSTALLED_APPS = [
     'jazzmin',
