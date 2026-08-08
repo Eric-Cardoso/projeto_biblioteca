@@ -8,16 +8,26 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
             name='BookGenre',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                (
+                    'id',
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name='ID',
+                    ),
+                ),
                 ('name', models.CharField(max_length=100, verbose_name='Nome')),
-                ('description', models.TextField(blank=True, null=True, verbose_name='Descrição')),
+                (
+                    'description',
+                    models.TextField(blank=True, null=True, verbose_name='Descrição'),
+                ),
             ],
             options={
                 'verbose_name': 'Gênero literário',
@@ -27,14 +37,42 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Book',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                (
+                    'id',
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name='ID',
+                    ),
+                ),
                 ('name', models.CharField(max_length=100, verbose_name='Nome')),
                 ('author', models.CharField(max_length=50, verbose_name='Autor')),
-                ('isbn', models.CharField(max_length=25, unique=True, verbose_name='ISBN')),
-                ('was_loaned', models.BooleanField(default=False, verbose_name='Está emprestado')),
-                ('description', models.TextField(blank=True, null=True, verbose_name='Descrição')),
-                ('publication_date', models.DateField(verbose_name='Data de publicação')),
-                ('genre', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, related_name='books', to='book.bookgenre', verbose_name='Gênero')),
+                (
+                    'isbn',
+                    models.CharField(max_length=25, unique=True, verbose_name='ISBN'),
+                ),
+                (
+                    'was_loaned',
+                    models.BooleanField(default=False, verbose_name='Está emprestado'),
+                ),
+                (
+                    'description',
+                    models.TextField(blank=True, null=True, verbose_name='Descrição'),
+                ),
+                (
+                    'publication_date',
+                    models.DateField(verbose_name='Data de publicação'),
+                ),
+                (
+                    'genre',
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.PROTECT,
+                        related_name='books',
+                        to='book.bookgenre',
+                        verbose_name='Gênero',
+                    ),
+                ),
             ],
             options={
                 'verbose_name': 'Livro',

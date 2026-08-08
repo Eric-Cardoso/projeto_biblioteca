@@ -1,10 +1,14 @@
 from django.db import models
 
+
 class BookGenre(models.Model):
-    name = models.CharField(max_length=100, verbose_name='Nome',)
+    name = models.CharField(
+        max_length=100,
+        verbose_name='Nome',
+    )
     description = models.TextField(
-        null=True, 
-        blank=True, 
+        null=True,
+        blank=True,
         verbose_name='Descrição',
     )
 
@@ -17,25 +21,37 @@ class BookGenre(models.Model):
 
 
 class Book(models.Model):
-    name = models.CharField(max_length=100, verbose_name='Nome',)
-    author = models.CharField(max_length=50, verbose_name='Autor',)
+    name = models.CharField(
+        max_length=100,
+        verbose_name='Nome',
+    )
+    author = models.CharField(
+        max_length=50,
+        verbose_name='Autor',
+    )
     genre = models.ForeignKey(
-        BookGenre, 
-        on_delete=models.PROTECT, 
-        related_name='books', 
+        BookGenre,
+        on_delete=models.PROTECT,
+        related_name='books',
         verbose_name='Gênero',
     )
-    isbn = models.CharField(max_length=25, unique=True, verbose_name='ISBN',)
+    isbn = models.CharField(
+        max_length=25,
+        unique=True,
+        verbose_name='ISBN',
+    )
     was_loaned = models.BooleanField(
-        default=False, 
+        default=False,
         verbose_name='Está emprestado',
     )
     description = models.TextField(
-        null=True, 
-        blank=True, 
+        null=True,
+        blank=True,
         verbose_name='Descrição',
     )
-    publication_date = models.DateField(verbose_name='Data de publicação',)
+    publication_date = models.DateField(
+        verbose_name='Data de publicação',
+    )
 
     class Meta:
         verbose_name = 'Livro'

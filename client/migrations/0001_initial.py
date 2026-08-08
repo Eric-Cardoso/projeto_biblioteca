@@ -17,13 +17,53 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Client',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                (
+                    'id',
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name='ID',
+                    ),
+                ),
                 ('name', models.CharField(max_length=50, verbose_name='Nome')),
-                ('cpf', models.CharField(max_length=25, unique=True, verbose_name='CPF')),
-                ('phone', models.CharField(blank=True, max_length=25, null=True, unique=True, verbose_name='Telefone')),
-                ('issue_date', models.DateTimeField(auto_now_add=True, verbose_name='Data de emissão')),
-                ('expiration_date', models.DateTimeField(blank=True, null=True, verbose_name='Data de expiração')),
-                ('user', models.OneToOneField(blank=True, null=True, on_delete=django.db.models.deletion.PROTECT, related_name='client', to=settings.AUTH_USER_MODEL, verbose_name='Usuário')),
+                (
+                    'cpf',
+                    models.CharField(max_length=25, unique=True, verbose_name='CPF'),
+                ),
+                (
+                    'phone',
+                    models.CharField(
+                        blank=True,
+                        max_length=25,
+                        null=True,
+                        unique=True,
+                        verbose_name='Telefone',
+                    ),
+                ),
+                (
+                    'issue_date',
+                    models.DateTimeField(
+                        auto_now_add=True, verbose_name='Data de emissão'
+                    ),
+                ),
+                (
+                    'expiration_date',
+                    models.DateTimeField(
+                        blank=True, null=True, verbose_name='Data de expiração'
+                    ),
+                ),
+                (
+                    'user',
+                    models.OneToOneField(
+                        blank=True,
+                        null=True,
+                        on_delete=django.db.models.deletion.PROTECT,
+                        related_name='client',
+                        to=settings.AUTH_USER_MODEL,
+                        verbose_name='Usuário',
+                    ),
+                ),
             ],
             options={
                 'verbose_name': 'Cliente',

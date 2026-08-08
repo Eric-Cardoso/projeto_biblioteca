@@ -1,0 +1,39 @@
+site_name: Biblioteca Admin
+site_description: Sistema de gestão de biblioteca construído com Django, com cadastro de clientes, livros e controle de empréstimos direto pelo Django Admin.
+site_author: Eric
+
+theme:
+  name: readthedocs
+  highlightjs: true
+
+plugins:
+  - search
+  - mermaid2
+
+markdown_extensions:
+  - admonition
+  - codehilite
+  - fenced_code
+  - toc:
+      permalink: true
+
+nav:
+  - Início: index.md
+  - Primeiros passos:
+      - Instalação: primeiros-passos/instalacao.md
+      - Configuração: primeiros-passos/configuracao.md
+      - Configurando o banco de dados: primeiros-passos/configuracao-banco.md
+  - Uso:
+      - Django Admin: uso/admin.md
+      - Estrutura de permissões: uso/permissoes.md
+  - Arquitetura:
+      - Visão geral: arquitetura/visao-geral.md
+      - Modelo de dados: arquitetura/modelo-dados.md
+      - Signals: arquitetura/signals.md
+  - Referência dos apps:
+      - client: referencia-apps/client.md
+      - book: referencia-apps/book.md
+      - loan: referencia-apps/loan.md
+      - setup: referencia-apps/setup.md
+  - Qualidade de código: qualidade-codigo.md
+  - Configuração do projeto: configuracao-projeto.md

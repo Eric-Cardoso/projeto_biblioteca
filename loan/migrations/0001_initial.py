@@ -17,9 +17,20 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='LoanDuration',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                (
+                    'id',
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name='ID',
+                    ),
+                ),
                 ('name', models.CharField(max_length=50, verbose_name='Nome')),
-                ('description', models.TextField(blank=True, null=True, verbose_name='Descrição')),
+                (
+                    'description',
+                    models.TextField(blank=True, null=True, verbose_name='Descrição'),
+                ),
             ],
             options={
                 'verbose_name': 'Duração de empréstimo',
@@ -29,12 +40,54 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Loan',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('loan_date', models.DateField(auto_now_add=True, verbose_name='Data do empréstimo')),
-                ('devolution_date', models.DateField(blank=True, null=True, verbose_name='Data de devolução')),
-                ('book', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, related_name='loans', to='book.book', verbose_name='Livro')),
-                ('client', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, related_name='loans', to='client.client', verbose_name='Cliente')),
-                ('loan_duration', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, related_name='loans', to='loan.loanduration', verbose_name='Duração do empréstimo')),
+                (
+                    'id',
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name='ID',
+                    ),
+                ),
+                (
+                    'loan_date',
+                    models.DateField(
+                        auto_now_add=True, verbose_name='Data do empréstimo'
+                    ),
+                ),
+                (
+                    'devolution_date',
+                    models.DateField(
+                        blank=True, null=True, verbose_name='Data de devolução'
+                    ),
+                ),
+                (
+                    'book',
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.PROTECT,
+                        related_name='loans',
+                        to='book.book',
+                        verbose_name='Livro',
+                    ),
+                ),
+                (
+                    'client',
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.PROTECT,
+                        related_name='loans',
+                        to='client.client',
+                        verbose_name='Cliente',
+                    ),
+                ),
+                (
+                    'loan_duration',
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.PROTECT,
+                        related_name='loans',
+                        to='loan.loanduration',
+                        verbose_name='Duração do empréstimo',
+                    ),
+                ),
             ],
             options={
                 'verbose_name': 'Empréstimo',

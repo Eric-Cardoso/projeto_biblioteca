@@ -1,6 +1,6 @@
-import environ
 from pathlib import Path
 
+import environ
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -16,14 +16,12 @@ ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default=[])
 
 INSTALLED_APPS = [
     'jazzmin',
-
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
     'client',
     'book',
     'loan',
@@ -68,7 +66,10 @@ DATABASES = {
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+        'NAME': (
+            'django.contrib.auth.password_validation.'
+            'UserAttributeSimilarityValidator'
+        ),
     },
     {
         'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
@@ -105,28 +106,22 @@ JAZZMIN_SETTINGS = {
     "login_logo": None,
     "welcome_sign": "Bem-vindo à administração da biblioteca",
     "copyright": "Sua Biblioteca",
-
     "search_model": ["client.Client", "book.Book"],
-
     "user_avatar": None,
-
     "topmenu_links": [
         {"name": "Home", "url": "admin:index"},
         {"app": "book"},
         {"app": "loan"},
         {"app": "client"},
     ],
-
     "usermenu_links": [
         {"model": "auth.user"},
     ],
-
     "show_sidebar": True,
     "navigation_expanded": True,
     "hide_apps": [],
     "hide_models": [],
     "order_with_respect_to": ["client", "book", "loan"],
-
     "icons": {
         "auth": "fas fa-users-cog",
         "auth.user": "fas fa-user",
@@ -139,8 +134,6 @@ JAZZMIN_SETTINGS = {
     },
     "default_icon_parents": "fas fa-chevron-circle-right",
     "default_icon_children": "fas fa-circle",
-
     "changeform_format": "horizontal_tabs",
-
     "language_chooser": False,
 }

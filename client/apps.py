@@ -6,4 +6,4 @@ class ClientConfig(AppConfig):
     verbose_name = 'Clientes'
 
     def ready(self):
-        from . import signals
+        from . import signals  # noqa: F401

@@ -15,12 +15,8 @@ def define_perm_groups(apps, schema_editor):
 
     client_group, _ = Group.objects.get_or_create(name='clientes')
     book_ct = ContentType.objects.get_for_model(Book)
-    perm_view_book = Permission.objects.get(
-        codename='view_book', 
-        content_type=book_ct
-    )
+    perm_view_book = Permission.objects.get(codename='view_book', content_type=book_ct)
     client_group.permissions.set([perm_view_book])
-
 
     employee_group, _ = Group.objects.get_or_create(name='funcionários')
 
@@ -29,7 +25,7 @@ def define_perm_groups(apps, schema_editor):
     book_genre_ct = ContentType.objects.get_for_model(BookGenre)
     loan_duration_ct = ContentType.objects.get_for_model(LoanDuration)
     loan_ct = ContentType.objects.get_for_model(Loan)
-    
+
     perm_add_user = Permission.objects.get(
         codename='add_user',
         content_type=user_ct,
@@ -44,15 +40,15 @@ def define_perm_groups(apps, schema_editor):
     )
 
     perm_add_cliente = Permission.objects.get(
-        codename='add_client', 
+        codename='add_client',
         content_type=cliente_ct,
     )
     perm_view_cliente = Permission.objects.get(
-        codename='view_client', 
+        codename='view_client',
         content_type=cliente_ct,
     )
     perm_change_cliente = Permission.objects.get(
-        codename='change_client', 
+        codename='change_client',
         content_type=cliente_ct,
     )
 
@@ -77,7 +73,7 @@ def define_perm_groups(apps, schema_editor):
         codename='change_book',
         content_type=book_ct,
     )
-    
+
     perm_add_loan_duration = Permission.objects.get(
         codename='add_loanduration',
         content_type=loan_duration_ct,
@@ -108,29 +104,31 @@ def define_perm_groups(apps, schema_editor):
         content_type=loan_ct,
     )
 
-    employee_group.permissions.set([
-        perm_add_user,
-        perm_add_cliente,
-        perm_add_book_genre,
-        perm_add_book,
-        perm_add_loan_duration,
-        perm_add_loan,
-        perm_view_user,
-        perm_view_cliente,
-        perm_view_book_genre,
-        perm_view_book,
-        perm_view_loan_duration,
-        perm_view_loan,
-        perm_change_user,
-        perm_change_cliente,
-        perm_change_book_genre,
-        perm_change_book,
-        perm_change_loan_duration,
-        perm_change_loan,
-        perm_delete_loan,
-    ])
+    employee_group.permissions.set(
+        [
+            perm_add_user,
+            perm_add_cliente,
+            perm_add_book_genre,
+            perm_add_book,
+            perm_add_loan_duration,
+            perm_add_loan,
+            perm_view_user,
+            perm_view_cliente,
+            perm_view_book_genre,
+            perm_view_book,
+            perm_view_loan_duration,
+            perm_view_loan,
+            perm_change_user,
+            perm_change_cliente,
+            perm_change_book_genre,
+            perm_change_book,
+            perm_change_loan_duration,
+            perm_change_loan,
+            perm_delete_loan,
+        ]
+    )
 
-    
+
 def remove_perm_groups(apps, schema_editor):
     Group = apps.get_model('auth', 'Group')
     Group.objects.filter(name__in=['clientes', 'funcionários']).delete()

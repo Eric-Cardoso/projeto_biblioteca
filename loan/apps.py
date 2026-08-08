@@ -6,4 +6,4 @@ class LoanConfig(AppConfig):
     verbose_name = 'Empréstimos'
 
     def ready(self):
-        from . import signals
+        from . import signals  # noqa: F401

@@ -5,7 +5,10 @@ from client.models import Client
 
 
 class LoanDuration(models.Model):
-    name = models.CharField(max_length=50, verbose_name='Nome',)
+    name = models.CharField(
+        max_length=50,
+        verbose_name='Nome',
+    )
     description = models.TextField(
         null=True,
         blank=True,
@@ -34,7 +37,7 @@ class Loan(models.Model):
         verbose_name='Livro',
     )
     loan_date = models.DateField(
-        auto_now_add=True, 
+        auto_now_add=True,
         verbose_name='Data do empréstimo',
     )
     loan_duration = models.ForeignKey(
@@ -44,8 +47,8 @@ class Loan(models.Model):
         verbose_name='Duração do empréstimo',
     )
     devolution_date = models.DateField(
-        null=True, 
-        blank=True, 
+        null=True,
+        blank=True,
         verbose_name='Data de devolução',
     )
 
@@ -55,6 +58,6 @@ class Loan(models.Model):
 
     def __str__(self):
         return (
-            f'{self.client.name} - {self.book.name} ' 
+            f'{self.client.name} - {self.book.name} '
             f'- {self.loan_date} - {self.loan_duration}'
         )
