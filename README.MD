@@ -44,17 +44,21 @@ ALLOWED_HOSTS=127.0.0.1,localhost
 
 ## Configurando o banco de dados
 
-Aplique as migrations para criar as tabelas e as configurações iniciais (grupos e permissões de "clientes" e "funcionários"):
+As migrations precisam ser aplicadas em duas etapas. Isso acontece porque a app `setup` cria grupos e permissões que dependem de permissions geradas automaticamente pelo Django *após* a migração das outras apps — rodar tudo num único `migrate` falha por causa dessa ordem.
 
-```bash
-python manage.py migrate
-```
+Primeiro, aplique as migrations de todas as apps, exceto `setup`:
 
-Crie um superusuário para acessar o admin:
+\`\`\`bash
+python manage.py migrate --skip-checks $(python manage.py showmigrations --list | grep -v setup)
+\`\`\`
 
-```bash
-python manage.py createsuperuser
-```
+> Se preferir, rode explicitamente cada app: `python manage.py migrate book`, `client`, `loan`, `admin`, `auth`, `contenttypes`, `sessions`.
+
+Depois, aplique a migration de setup, que cria os grupos "clientes" e "funcionários" com as permissões corretas:
+
+\`\`\`bash
+python manage.py migrate setup
+\`\`\``
 
 ## Uso
 
