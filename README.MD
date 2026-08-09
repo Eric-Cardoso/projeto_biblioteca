@@ -46,19 +46,23 @@ ALLOWED_HOSTS=127.0.0.1,localhost
 
 As migrations precisam ser aplicadas em duas etapas. Isso acontece porque a app `setup` cria grupos e permissões que dependem de permissions geradas automaticamente pelo Django *após* a migração das outras apps — rodar tudo num único `migrate` falha por causa dessa ordem.
 
-Primeiro, aplique as migrations de todas as apps, exceto `setup`:
+Primeiro, aplique as migrations das demais apps, uma de cada vez (o comando `migrate` só aceita um `app_label` por vez):
 
-\`\`\`bash
-python manage.py migrate --skip-checks $(python manage.py showmigrations --list | grep -v setup)
-\`\`\`
-
-> Se preferir, rode explicitamente cada app: `python manage.py migrate book`, `client`, `loan`, `admin`, `auth`, `contenttypes`, `sessions`.
+```bash
+python manage.py migrate admin
+python manage.py migrate auth
+python manage.py migrate contenttypes
+python manage.py migrate book
+python manage.py migrate client
+python manage.py migrate loan
+python manage.py migrate sessions
+```
 
 Depois, aplique a migration de setup, que cria os grupos "clientes" e "funcionários" com as permissões corretas:
 
-\`\`\`bash
+```bash
 python manage.py migrate setup
-\`\`\``
+```
 
 ## Uso
 
