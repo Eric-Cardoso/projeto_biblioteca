@@ -64,6 +64,12 @@ Depois, aplique a migration de setup, que cria os grupos "clientes" e "funcioná
 python manage.py migrate setup
 ```
 
+Crie um superusuário para acessar o admin:
+
+```bash
+python manage.py createsuperuser
+```
+
 ## Uso
 
 ```bash
